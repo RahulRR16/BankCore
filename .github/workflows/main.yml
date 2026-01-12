@@ -21,5 +21,5 @@ jobs:
           xcodebuild test \
             -project BankCore.xcodeproj \
             -scheme BankCore \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
             clean test
