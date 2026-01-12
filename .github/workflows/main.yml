@@ -14,7 +14,15 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # CRITICAL: Gitleaks needs full history to scan properly
 
+      # NEW SECURITY: Checks for Token/API Keys
+      - name: Security Scan - Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Run Unit Tests
         # This is the magic command that runs your TDD tests
         run: |
