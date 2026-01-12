@@ -15,9 +15,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Select Xcode Version
-        run: sudo xcode-select -s /Applications/Xcode_15.2.app # Update version as needed
-
       - name: Run Unit Tests
         # This is the magic command that runs your TDD tests
         run: |
