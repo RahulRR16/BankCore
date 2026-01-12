@@ -1,0 +1,28 @@
+name: iOS CI - Banking Unit Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    name: Build and Test Default Scheme
+    runs-on: macos-latest  # Runs on a virtual Mac
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode Version
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app # Update version as needed
+
+      - name: Run Unit Tests
+        # This is the magic command that runs your TDD tests
+        run: |
+          xcodebuild test \
+            -project BankCore.xcodeproj \
+            -scheme BankCore \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            clean test
